@@ -1,0 +1,24 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+    <Script file="CameraEffect.lua"/>
+	<!--
+	<Frame name="MenuBarOrnaments" frameStrata="HIGH"> 
+		<Layers>
+			<Layer level="OVERLAY" textureSubLevel="5">
+				<Texture parentKey="LeftEndCap" atlas="hud-MainMenuBar-gryphon" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="MainMenuBarArtFrame" x="-98" y="-10"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="RightEndCap" atlas="hud-MainMenuBar-gryphon" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeTo="MainMenuBarArtFrame" x="98" y="-10"/>
+					</Anchors>
+					<TexCoords left="1" right="0" top="0" bottom="1"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	-->
+</Ui>
