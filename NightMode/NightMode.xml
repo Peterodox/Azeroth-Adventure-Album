@@ -1,0 +1,108 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+    <Script file="NightMode.lua"/>
+
+	<Frame name="NightMode" frameLevel="12" virtual="false" frameStrata="TOOLTIP" hidden="true">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+			<Anchor point="BOTTOMRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY" >
+				<Texture parentKey="Black" setAllPoints="true" alphaMode="BLEND">
+					<Color r="0" g="0" b="0" a="0.8"/>
+				</Texture>	
+
+				<Texture parentKey="Border" file="Interface\AddOns\AzerothAdventureAlbum\Features\NightMode\Border-Glow" alphaMode="ADD" Alpha="0.6">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="AAA_Journal" relativePoint="CENTER"/>
+					</Anchors>
+					<Size>                      <!--*0.75-->
+						<AbsDimension x="798" y="505"/>
+					</Size>
+					<TexCoords left="0" right=" 0.51953125 " top="0" bottom=" 0.6572265625 "/>
+				</Texture>
+
+		
+
+				<MaskTexture parentKey="ImageMask" file="Interface\AddOns\AzerothAdventureAlbum\Features\NightMode\TestMask-Ring" hWrapMode="CLAMPTOWHITE" vWrapMode="CLAMPTOWHITE">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+					<MaskedTextures>
+						<MaskedTexture childKey="Black"/>
+					</MaskedTextures>
+					<Animations>
+					<AnimationGroup parentKey="animIn" looping="REPEAT">
+						<Scale scaleX="1.05" scaleY="1.05" duration="2" order="1"/>
+						<Scale scaleX="0.95" scaleY="0.95" duration="2" order="2"/>
+						<Scripts>
+							<OnPlay>
+								--self:GetParent():Show(); 
+							</OnPlay>
+							<OnFinished>
+
+							</OnFinished>
+						</Scripts>
+					</AnimationGroup>
+					</Animations>
+				</MaskTexture>
+				
+				<MaskTexture parentKey="BorderMask" file="Interface\AddOns\AzerothAdventureAlbum\Features\NightMode\TestMask-reversed" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+					<Size>
+						<AbsDimension x="200" y="200"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" reletiveKey="$parent.ImageMask" relativePoint="CENTER"/>
+					</Anchors>
+					<MaskedTextures>
+						<MaskedTexture childKey="Border"/>
+					</MaskedTextures>
+				</MaskTexture>
+
+				<Texture parentKey="CursorShadow" file="Interface\AddOns\AzerothAdventureAlbum\Features\NightMode\Cursor-Shadow" Alpha="0.4">
+					<Anchors>
+						<Anchor point="CENTER" reletiveKey="$parent.ImageMask" relativePoint="CENTER"/>
+					</Anchors>
+					<Size>                      <!--*0.75-->
+						<AbsDimension x="24" y="24"/>
+					</Size>
+				</Texture>		
+			</Layer>
+		</Layers>
+
+		<Scripts>
+			<OnUpdate function="NightMode_OnUpdate"/>
+			<OnShow function="NightMode_OnShow"/>
+		</Scripts>
+		<Animations>
+			<AnimationGroup parentKey="animIn" smoothing="IN_OUT">
+				<Alpha fromAlpha="1" toAlpha="0" duration="0" order="1"/>
+				<Alpha fromAlpha="0" toAlpha="1" duration="4" order="2"/>
+				<Scripts>
+					<OnPlay>
+						self:GetParent().Border:Show()
+                        self:GetParent().ImageMask:Show();
+						self:GetParent():Show();
+					</OnPlay>
+				</Scripts>
+			</AnimationGroup>
+			<AnimationGroup parentKey="animOut" smoothing="IN_OUT">
+				<Alpha fromAlpha="1" toAlpha="0" duration="0.5" order="1" />
+				<Scripts>
+					<OnPlay>
+						self:GetParent().Border:Hide();
+                        self:GetParent().ImageMask:Hide();
+					</OnPlay>
+					<OnFinished>
+						self:GetParent():Hide();
+					</OnFinished>
+				</Scripts>
+			</AnimationGroup>
+		</Animations>		
+	</Frame>
+</Ui>
