@@ -1,0 +1,45 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+    <Script file="Checkpoint.lua"/>
+
+    <Frame name="AAAEventsContainer" parent="UIParent"/>
+
+    <Frame name="EventListenerTemplate" hidden="true" virtual="true">
+        <Scripts>
+            <OnLoad>
+                --print(self:GetName().." Loaded");
+            </OnLoad>
+            <OnShow>
+                --print(self:GetName()..": |cFF00FF00ON|r")
+            </OnShow>
+            <OnHide>
+				self:UnregisterAllEvents();
+                --print(self:GetName()..": |cFFFF0000OFF|r")
+            </OnHide>
+        </Scripts>
+    </Frame>
+
+    <Frame name="TargetnpcID" parent="AAAEventsContainer" inherits="EventListenerTemplate">
+        <Scripts>
+            <OnShow function="TargetnpcID_OnShow"/>
+            <OnHide function="TargetnpcID_OnHide"/>
+        </Scripts>
+    </Frame>
+
+    <Frame name="GossipListener" parent="AAAEventsContainer" hidden="true" inherits="EventListenerTemplate">
+        <Scripts>
+            <OnLoad function="GossipListener_OnLoad"/>
+            <OnShow function="GossipListener_OnShow"/>
+            <OnHide function="GossipListener_OnHide"/>
+        </Scripts>
+    </Frame>
+
+    <Frame name="AchievementListener" parent="AAAEventsContainer" inherits="EventListenerTemplate">
+        <Scripts>
+            <OnShow function="AchievementListener_OnShow"/>
+            <OnHide function="AchievementListener_OnHide"/>
+        </Scripts>
+    </Frame>
+
+</Ui>

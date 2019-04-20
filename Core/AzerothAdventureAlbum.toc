@@ -1,0 +1,27 @@
+## Interface: 80100
+## Plain Title: Azeroth Adventure Album
+## Title: |cff008affA|cff0d8ef2z|cff1a92e5e|cff2696d9r|cff339acco|cff409ebft|cff4da1b2h |cff59a5a6A|cff66a999d|cff73ad8cv|cff7fb180e|cff8cb573n|cff99b966t|cffa6bd59u|cffb2c14dr|cffbfc440e |cffccc833A|cffd9cc26l|cffe5d01ab|cfff2d40du|cffffd800m
+
+## Notes: Collect and review lores and photos from all across Azeroth.|n|cff959595Slash command: /AAA|r
+## Notes-zhCN: 将发生在艾泽拉斯上的绝妙故事收入相簿之中|n|cff959595命令: /AAA|r
+## Notes-zhTW: 將發生在艾澤拉斯上的絕妙故事收入相簿之中|n|cff959595命令: /AAA|r
+
+## Author: Peterodox
+## SavedVariables: Progress, AAASettings
+
+
+LoadProgress.lua
+
+List\Localization_List.xml
+Locales\Localization_UI.xml
+
+Font\FontSettings.xml
+
+Intro\Intro.xml
+
+AzerothAdventureAlbum.xml
+Notification.xml
+Checkpoint.xml
+
+Features\NightMode.xml
+Features\CameraEffect.xml

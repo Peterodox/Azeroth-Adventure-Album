@@ -1,0 +1,2160 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="AzerothAdventureAlbum.lua"/>
+
+	<Texture name="ScrollBarButton" virtual="true">
+		<TexCoords left="0" right="1" top="0" bottom="1"/>
+	</Texture>
+	<Texture name="HighlightTemplate" file="Interface\AddOns\AzerothAdventureAlbum\ART\LOGO" virtual="true">
+		<Size x="36" y="36"/>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<TexCoords left="0.75" right="1" top="0" bottom="1"/>
+			<Animations>
+				<AnimationGroup parentKey="animIn" looping="REPEAT">
+					<Rotation degrees="360" duration="2" order="1"/>
+					<Scripts>
+					</Scripts>
+				</AnimationGroup>
+			</Animations>
+	</Texture>	
+	<Button name="ScrollUpButtonTemplate" virtual="true">
+		<Size x="12" y="12"/>
+		<NormalTexture parentKey="Normal" inherits="ScrollBarButton" file="Interface\AddOns\AzerothAdventureAlbum\ART\ScrollBar\ScrollUpButton-Up"/>
+		<PushedTexture parentKey="Pushed" inherits="ScrollBarButton" file="Interface\AddOns\AzerothAdventureAlbum\ART\ScrollBar\ScrollUpButton-Down"/>
+		<DisabledTexture parentKey="Disabled" inherits="ScrollBarButton" file="Interface\AddOns\AzerothAdventureAlbum\ART\ScrollBar\ScrollUpButton-Disabled"/>
+		<HighlightTexture parentKey="Highlight" inherits="ScrollBarButton" file="Interface\AddOns\AzerothAdventureAlbum\ART\ScrollBar\ScrollUpButton-Highlight" alphaMode="ADD"/>
+	</Button>
+	<Button name="ScrollDownButtonTemplate" virtual="true">
+		<Size x="12" y="12"/>
+		<NormalTexture parentKey="Normal" inherits="ScrollBarButton" file="Interface\AddOns\AzerothAdventureAlbum\ART\ScrollBar\ScrollDownButton-Up"/>
+		<PushedTexture parentKey="Pushed" inherits="ScrollBarButton" file="Interface\AddOns\AzerothAdventureAlbum\ART\ScrollBar\ScrollDownButton-Down"/>
+		<DisabledTexture parentKey="Disabled" inherits="ScrollBarButton" file="Interface\AddOns\AzerothAdventureAlbum\ART\ScrollBar\ScrollDownButton-Disabled"/>
+		<HighlightTexture parentKey="Highlight" inherits="ScrollBarButton" file="Interface\AddOns\AzerothAdventureAlbum\ART\ScrollBar\ScrollDownButton-Highlight" alphaMode="ADD"/>
+	</Button>
+
+
+	<Button name="CloseButtonTemplate" virtual="true">
+		<Size x="12" y="12"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\CloseButton" Alpha="1">
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\CloseButton-highlight" Alpha="0" alphaMode="ADD" parentKey="White" hidden="true">
+				</Texture>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\AddOns\AzerothAdventureAlbum\Art\Card\CloseButton-highlight" Alpha="0.5" alphaMode="ADD">
+			<Size x="12" y="12"/>
+			<Anchors>
+				<Anchor point="CENTER"/>
+			</Anchors>
+			<TexCoords left="0" right="1" top="0" bottom="1"/>
+		</HighlightTexture>	
+		<Scripts>
+			<OnClick>
+				self:GetParent():Hide();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT",0,15);
+				GameTooltip:SetText(BUTTON_TOOLTIP_CLOSE);
+				self.showingTooltip = true;
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+				self.showingTooltip = false;
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Button name="ButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension  x="253" y="71"/>
+		</Size>
+        <Anchors>
+            <Anchor point="LEFT" relativePoint="TOPRIGHT"/>
+        </Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Background" file="Interface\AddOns\AzerothAdventureAlbum\Art\Background">
+					<TexCoords left="0" right="0.5498046875" top="0" bottom="  0.625  "/>
+				</Texture>
+			</Layer>
+			
+			<Layer level="ARTWORK">
+				<Texture parentKey="icon">
+					<Size x="48" y="48"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" x="11.5" y="0"/>
+					</Anchors>
+				</Texture>
+
+				<FontString parentKey="Title" inherits="CardHeader" justifyH="CENTER" justifyV="MIDDLE">
+					<Size x="200" y="12"/>
+					<Anchors>
+						<Anchor point="TOP" relativeKey="$parent" relativePoint="TOP" x="24" y="-17.5"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="Description" inherits="CardParagraphWhiteTiny"  justifyH="CENTER" justifyV="MIDDLE">
+					<Size x="160" y="10"/>
+					<Color r="0.18" g="0.12" b="0.06"/>
+					<Anchors>
+						<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="23" y="18"/>
+					</Anchors>
+				</FontString>
+
+				<FontString parentKey="buttonNumber" inherits="CardParagraphWhiteTiny" hidden="true">
+					<Size x="200" y="12"/>
+					<Color r="255.0" g="255.0" b="255.0" a="0"/>
+					<Anchors>
+						<Anchor point="TOP" relativeKey="$parent" relativePoint="TOP" x="23" y="-17"/>
+					</Anchors>
+				</FontString>
+
+			</Layer>
+
+			<Layer level="OVERLAY" textureSubLevel="1">
+
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\Art\CardBoarderOverlay" parentKey="Overlay">
+					<Size x="58" y="58"/>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="CENTER" relativeKey="$parent.icon" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0" bottom="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY"  textureSubLevel="2">
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\Art\CardHighlightYellow" alphaMode="ADD" parentKey="selectedTexture" hidden="true">
+					<Size x="253" y="72"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+					<TexCoords left="0" right="0.5498046875" top="0" bottom="0.625"/>
+				</Texture>	
+
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\AddOns\AzerothAdventureAlbum\Art\CardHighlightYellow" alphaMode="ADD" parentKey="ButtonHighlight">
+			<Size x="253" y="71"/>
+			<Anchors>
+				<Anchor point="CENTER"/>
+			</Anchors>
+			<TexCoords left="0" right="0.5498046875" top="0" bottom="0.625"/>
+		</HighlightTexture>	
+		<Scripts>
+			<OnLoad>
+				self:RegisterForClicks("LeftButtonUp","RightButtonUp")
+			</OnLoad>
+			<OnClick function="JournalButton_OnClick"/>
+			<OnEnter function="JournalButton_OnEnter"/>
+			<OnLeave>
+				GameTooltip:Hide();
+				self.showingTooltip = false;
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Button name="ShelfTemplate" frameStrata="DIALOG" virtual="true">
+		<Size>
+			<AbsDimension  x="230" y="300"/> <!--Origin*0.75-->
+		</Size>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Scroll" file="Interface\AddOns\AzerothAdventureAlbum\Art\Animations\Scroll-Vertical">
+					<Size x="200" y="146"/>
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="-198"/>
+					</Anchors>
+					<TexCoords left="0" right="0.1416015625" top="0" bottom="0.283203125"/>
+				</Texture>
+				<MaskTexture parentKey="VirtualSwitch">
+					<Animations>
+						<AnimationGroup parentKey="animIn" smoothing="OUT">
+							<Translation parentKey="Translation" offsetY="-116" duration="0" order="1"/>
+							<Scripts>
+								<OnFinished>
+									self:GetParent():GetParent().AnimationContainer_Paper:Show();
+								</OnFinished>
+							</Scripts>
+						</AnimationGroup>
+					</Animations>
+				</MaskTexture>
+			</Layer>		
+			<Layer level="ARTWORK">
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\Art\BookCover\Shadow">
+					<Size x="240" y="296"/>
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0" right="0.642578125" top="0" bottom="0.794921875"/>
+				</Texture>
+			</Layer>
+
+			<Layer level="OVERLAY">
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\Art\Card\CardShelf" parentKey="StatusBottom">
+					<Size x="198" y="25"/>
+					<Anchors>
+						<Anchor point="TOP" relativeKey="$parent.Background" relativePoint="BOTTOM" x="0" y="-136"/>
+					</Anchors>
+					<TexCoords left="0" right="0.2568359375" top="0.9677734375" bottom="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="2">
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\Art\Animations\BookCover1" parentKey="AnimCover">
+					<Size x="210" y="266"/>
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="1"/>
+					</Anchors>
+					<TexCoords left="0" right="0.146484375" top="0" bottom="0.185546875"/>
+				</Texture>
+				<FontString parentKey="Title" text= "Classic Edition" inherits="CardHeader" justifyH="CENTER" justifyV="MIDDLE">
+					<Size x="184" y="12"/>
+					<Anchors>
+						<Anchor point="TOP" relativeKey="$parent" relativePoint="TOP" x="9" y="-100"/> <!-- -60 -->
+					</Anchors>
+				</FontString>
+				<Texture setAllPoints="true" parentKey="StatusBar"><!--182-->
+					<Size>
+					<AbsDimension x="182" y="14"/>
+					</Size>
+					<Color r="0" g="0.8" b="0" a="0.6"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent.StatusBottom" relativePoint="LEFT" x="8" y="0"/>
+					</Anchors>	
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="3">
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\Art\Card\CardShelf">
+					<Size x="198" y="25"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent.StatusBottom" relativePoint="CENTER" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0" right="0.2568359375" top="0.935546875" bottom="0.9677734375"/>
+				</Texture>
+				<FontString parentKey="StatusNum"  inherits="NotificationFont_Tiny" spacing="0" justifyH="CENTER">
+					<Size x="144" y="0"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent.StatusBottom" relativePoint="CENTER" x="0" y="0"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="AnimationContainer_Paper" hidden="true">
+				<Scripts>
+					<OnLoad>
+						self.OppoDirection = false;
+						self.TimeSinceLastUpdate = 0
+						self.TotalTime = 0;
+						self.Index = 1;
+						self.Pending = false;
+						self.IsPlaying = false;	
+						self.Target = self:GetParent().Scroll
+
+						self.SequenceInfo =	{
+						["TotalFrames"] = 21,
+						["cX"] = 0.1416015625,
+						["cY"] = 0.283203125,
+						["Column"] = 7,
+						["Row"] = 3	
+						}
+					</OnLoad>
+					<OnUpdate function="AnimationSequence_SingleDirection_OnUpdate"/>
+					<OnShow>
+						self.IsPlaying = true;
+					</OnShow>
+					<OnHide>
+						self.IsPlaying = false;
+						self.TotalTime = 0;
+						self.TimeSinceLastUpdate = 0;
+						self.Index = 0;
+					</OnHide>
+				</Scripts>
+			</Frame>
+			<Frame parentKey="AnimationContainer_Cover" hidden="true">
+				<Scripts>
+					<OnLoad>
+						self.OppoDirection = false;
+						self.TimeSinceLastUpdate = 0
+						self.TotalTime = 0;
+						self.Index = 1;
+						self.Pending = false;
+						self.IsPlaying = false;	
+						self.Target = self:GetParent().AnimCover
+
+						self.SequenceInfo =	{
+						["TotalFrames"] = 22,
+						["cX"] = 0.146484375,
+						["cY"] = 0.185546875,
+						["Column"] = 6,
+						["Row"] = 5	
+						}
+					</OnLoad>
+					<OnUpdate function="AnimationSequence_Loop_OnUpdate"/>
+					<OnShow>
+						self.IsPlaying = true;
+					</OnShow>
+					<OnHide>
+						self.IsPlaying = false;
+						self.TotalTime = 0;
+						self.TimeSinceLastUpdate = 0;
+						self.OppoDirection = not self.OppoDirection;
+					</OnHide>
+				</Scripts>
+			</Frame>
+			<Frame parentKey="DescriptionClipper" clipChildren="true">
+				<Size x="300" y="0"/>
+				<Anchors>
+					<Anchor point="TOP" relativeKey="$parent.Scroll" relativePoint="TOP" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString parentKey="Description" spacing="2" text=" " inherits="CardParagraphWhiteTiny"  justifyH="LEFT" justifyV="TOP">
+							<Size x="176" y="140"/>
+							<Color r="0.18" g="0.12" b="0.06"/>
+							<Anchors>
+								<Anchor point="TOP" relativeKey="$parent.$parent.Scroll" relativePoint="TOP" x="2" y="-15"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self.buttonNumber = 0;
+				UpdateShelfProgressBar(self)
+			</OnLoad>
+			<OnShow>
+			</OnShow>
+			<OnClick function="AAA_HideShelf"/>
+			<OnEnter>
+				--print("show")
+				--self.AnimationContainer_Cover:Hide();
+				self.AnimationContainer_Cover.OppoDirection = false;
+				self.AnimationContainer_Cover:Show();
+			</OnEnter>
+			<OnLeave>
+				--print("leave")
+				--print(self.AnimationContainer_Cover.Index)
+				--self.AnimationContainer_Cover:Hide();
+				self.AnimationContainer_Cover.OppoDirection = true;
+				self.AnimationContainer_Cover:Show();
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+
+	<Button name="DropdownButton" virtual="true" frameStrata="DIALOG">
+		<Size x="145" y="18"/>
+		<HighlightTexture setAllPoints="true" Alpha="0.2" alphaMode="ADD">
+			<Size x="145" y="18"/>
+			<Color r="1" g="1" b="1" a="0.7"/>
+			<Anchors>
+				<Anchor point="CENTER"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnClick function="DropdownButton_OnClick"/>
+		</Scripts>
+	</Button>
+
+	<Button name="SettingsDropdownButton" framelevel="15" virtual="true">
+		<Size x="200" y="18"/>
+		<HighlightTexture setAllPoints="true" Alpha="0.2" alphaMode="ADD">
+			<Size x="200" y="18"/>
+			<Color r="1" g="1" b="1" a="0.7"/>
+			<Anchors>
+				<Anchor point="CENTER"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnLeave>
+				GameTooltip:Hide();
+				self.showingTooltip = false;
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<Texture name="PopUpTemplate" virtual="true">
+		<Animations>
+			<AnimationGroup parentKey="animIn" smoothing="OUT">
+				<Scale scaleX="0.5" scaleY="0.5" duration="0" order="1"/>
+				<Scale scaleX="1.9" scaleY="1.9" duration="0.2" order="2"/>
+				<Scale scaleX="1.05" scaleY="1.05" duration="0.15" order="3"/>
+			</AnimationGroup>
+		</Animations>
+	</Texture>
+	<FontString name="FontStringFadeInTemplate" virtual="true" hidden="true" inherits="CardParagraphWhiteTiny" justifyH="LEFT" justifyV="TOP" spacing="2">
+		<Animations>
+			<AnimationGroup parentKey="animIn" smoothing="OUT">
+				<Alpha fromAlpha="0" toAlpha="0" duration="0" order="1"/>
+				<Alpha startDelay="0.3" fromAlpha="0" toAlpha="1" duration="0.3" order="2"/>
+				<Scripts>
+					<OnPlay>
+						self:GetParent():Show()
+					</OnPlay>	
+				</Scripts>
+			</AnimationGroup>
+		</Animations>
+	</FontString>
+	<Button name="PatchNoteButtonTemplate" hidden="true" virtual="true" frameLevel="9">
+		<Size x="225" y="10"/>
+		<Layers>
+			<Layer level="OVERLAY">
+			<FontString parentKey="Text" inherits="CardParagraphWhiteTiny" spacing="2" justifyH="LEFT" justifyV="MIDDLE" text="awdadawdw adkaha awdadawdwadkahaaw dadawdwadkahaa wdadawdw adkahaa wdadawdw adkaha">
+				<Size x="225" y="0"/>
+				<Anchors>
+					<Anchor point="LEFT"/>
+				</Anchors>
+			</FontString>
+			<Texture name="Indicator" parentKey="Indicator" setAllPoints="true" hidden="true">
+				<Size>
+					<AbsDimension x="2.5" y="0"/>
+				</Size>
+				<Color r="1" g="1" b="1" a="0.6"/>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" x="-8" y="1"/>
+				</Anchors>	
+			</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				self.Text:SetText(IntroList[0]["SubTitle"][1])
+				local height = self.Text:GetHeight();
+				self:SetHeight(height)
+				self.Indicator:SetHeight(height-14)
+			</OnLoad>
+			<OnEnter>
+				PlaySound(100)
+				self.Indicator:Show()
+			</OnEnter>
+			<OnLeave>
+				self.Indicator:Hide()
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+
+
+	<Frame name="JournalBottomPanelTemplate" virtual="true" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="337" y="39"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentBackground" frameLevel="1">
+				<Size x="337" y="39"/>                      <!--*0.8-->
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\JournalElements">
+							<TexCoords left="0.10693359375" right="0.3125" top="0.953125" bottom="1"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+
+				</Scripts>
+			</Frame>
+			<Button name="FilterButton" parentKey="FilterButton">
+				<Anchors>
+					<Anchor point="LEFT" x="12" y="3"/>
+				</Anchors>
+				<Size x="156" y="22"/>
+				<Layers>
+					<Layer level="BORDER">
+						<FontString parentKey="CurrentChoice" text="AAA_MENU_TOTALS" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Color r="1.0" g="0.82" b="0"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="LEFT" x="18"/>
+							</Anchors>
+						</FontString>
+						<FontString parentKey="CurrentProgress" text="00/00" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="RIGHT">
+							<!--Color r="1.0" g="0.82" b="0"/-->
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="LEFT" x="4"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<HighlightTexture file="Interface\AddOns\AzerothAdventureAlbum\ART\DropdownElements" alphaMode="ADD">
+					<TexCoords left="0.427734375" right="0.85546875" top="0.0625" bottom="0.125"/>
+					<Size x="156" y="22"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</HighlightTexture>
+				<Scripts>
+					<OnClick>
+						PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+						AAA_Journal.Settings:Hide();
+						local ddm = self:GetParent():GetParent().Filter;
+						if (not ddm:IsShown() ) then
+							ddm:Show();
+						else
+							ddm:Hide();
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="SettingsButton" parentKey="SettingsButton">
+				<Anchors>
+					<Anchor point="RIGHT" x="-14" y="3"/>
+				</Anchors>
+				<Size x="156" y="22"/>
+				<Layers>
+					<Layer level="BORDER">
+						<FontString  text="AAA_MENU_SETTINGS" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="CENTER">
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="-5"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<HighlightTexture file="Interface\AddOns\AzerothAdventureAlbum\ART\DropdownElements" alphaMode="ADD">
+					<TexCoords left="0.427734375" right="0.85546875" top="0" bottom="0.0625"/>
+					<Size x="156" y="22"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</HighlightTexture>
+				<Scripts>
+					<OnClick>
+						PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+						AAA_Journal.Filter:Hide();
+						local ddm = self:GetParent():GetParent().Settings;
+						if (not ddm:IsShown() ) then
+							ddm:Show();
+						else
+							ddm:Hide();
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Animations>
+			<AnimationGroup parentKey="animOut" smoothing="IN">
+				<Translation offsetY="30" duration="0.25" order="1"/>
+				<Scripts>
+					<OnFinished>
+						local point, relativeTo, relativePoint, xOfs, yOfs = self:GetParent():GetPoint();
+						self:GetParent():SetPoint(point, relativeTo, relativePoint, xOfs, yOfs + 30)
+						self:GetParent().animIn:Play();
+					</OnFinished>
+				</Scripts>
+			</AnimationGroup>
+			<AnimationGroup parentKey="animIn" smoothing="OUT">
+				<Translation offsetY="-30" duration="0.25" order="1"/>
+				<Scripts>
+					<OnFinished>
+						local point, relativeTo, relativePoint, xOfs, yOfs = self:GetParent():GetPoint();
+						self:GetParent():SetPoint(point, relativeTo, relativePoint, xOfs, yOfs - 30)
+					</OnFinished>
+				</Scripts>
+			</AnimationGroup>
+		</Animations>
+	</Frame>
+
+<!--
+
+-->
+
+	<Frame name="JournalFilterDownMenuTemplate" frameLevel="4" virtual="true">
+		<Size>
+			<AbsDimension x="164.25" y="173.25"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentFilterDropdown" parentKey="FilterDropdown" frameStrata="DIALOG">
+				<Size x="164" y=" 174 "/>                      <!--*0.75-->
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\DropdownElements"  Alpha="0.9">
+							<TexCoords left="0" right="0.427734375" top="0" bottom="0.451171875"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture setAllPoints="true" parentKey="Dividing">
+							<Size>
+							<AbsDimension x="146" y="0.6"/>
+							</Size>
+							<Color r="0.5" g="0.47" b="0.40" a="0.5"/>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="40"/> <!--18 40-->
+							</Anchors>	
+						</Texture>
+						<Texture  setAllPoints="true" >
+							<Size>
+							<AbsDimension x="146" y="0.6"/>
+							</Size>
+							<Color r="0.5" g="0.47" b="0.40" a="0.5"/>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="102"/>
+							</Anchors>	
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+				<OnEnter/>
+				</Scripts>
+			</Frame>
+
+			<Button inherits="DropdownButton" frameLevel="6" parentKey="DropdownButton5" name="DropdownButton5">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="106"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_ZULDAZAR" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="8"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button inherits="DropdownButton" frameLevel="6" parentKey="DropdownButton6" name="DropdownButton6">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="124"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_VOLDUN" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="8"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button inherits="DropdownButton" frameLevel="6" parentKey="DropdownButton7" name="DropdownButton7">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="142"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_NAZMIR" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="8"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						self:Disable();
+						self:SetAlpha(0.5);
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button inherits="DropdownButton" frameLevel="6" parentKey="DropdownButton2" name="DropdownButton2">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="44"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_TIRAGARDE" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="8"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button inherits="DropdownButton" frameLevel="6" parentKey="DropdownButton3" name="DropdownButton3">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="62"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_DRUSTVAR" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="8"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button inherits="DropdownButton" frameLevel="6" parentKey="DropdownButton4" name="DropdownButton4">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="80"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_STORMSONG" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="8"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button inherits="DropdownButton" frameLevel="6" parentKey="DropdownButton1" name="DropdownButton1">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="19.5"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_BFA" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Color r="1.0" g="0.82" b="0"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="8"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+		</Frames>
+	</Frame>
+
+	<Frame name="JournalSettingsDownMenuTemplate" frameLevel="11" virtual="true">
+		<Size>
+			<AbsDimension x="219" y="173.25"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentSettingsDropdown" parentKey="SettingsDropdown">
+				<Size x="219" y=" 174 "/>                      
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\DropdownElements"  Alpha="0.9">
+							<TexCoords left="0" right="0.5703125" top="0.548828125" bottom="1"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="Dividing" setAllPoints="true">
+							<Size>
+							<AbsDimension x="200" y="0.6"/>
+							</Size>
+							<Color r="0.5" g="0.47" b="0.40" a="0.5"/>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="40"/> 
+							</Anchors>	
+						</Texture>
+						<Texture  setAllPoints="true" >
+							<Size>
+							<AbsDimension x="200" y="0.6"/>
+							</Size>
+							<Color r="0.5" g="0.47" b="0.40" a="0.5"/>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="120"/>
+							</Anchors>	
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter/>
+				</Scripts>
+			</Frame>
+			
+			<Button inherits="SettingsDropdownButton" parentKey="ScaleButton" name="AAAScaleButton" enabled="true">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="142"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString text="AAA_MENU_SCALE" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Color r="1" g="1" b="1" a="1"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="-21"/>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_SCALE_REGULAR" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="RIGHT">
+							<Color r="1" g=".82" b="0" a="1"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="21"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick function="AAAScaleButton_OnClick"/>
+					<OnEnter function="AAAScaleButton_OnEnter"/>
+				</Scripts>
+			</Button>
+			<Button inherits="SettingsDropdownButton" parentKey="PinStyleButton" name="PinStyleButton">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="124"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString text="AAA_MENU_PINSTYLE" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Color r="1" g="1" b="1" a="1"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="-21"/>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentName" parentKey="ButtonName" text= " " inherits="CardParagraphWhiteTiny" spacing="0" justifyH="RIGHT">
+							<Color r="1" g=".82" b="0" a="1"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="21"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick function="PinStyleButton_OnClick"/>
+					<OnEnter function="PinStyleButton_OnEnter"/>
+				</Scripts>
+			</Button>
+
+			<Button inherits="SettingsDropdownButton" parentKey="NightModeButton" name="NightModeButton">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="44"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString text="AAA_MENU_NIGHTMODE" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="-21"/>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_DISABLED" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="RIGHT">
+							<Color r="1" g=".82" b="0"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="21"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter function ="NightModeButton_OnEnter" />
+					<OnClick function="NightModeButton_OnClick"/>
+				</Scripts>
+			</Button>
+
+			<Button inherits="SettingsDropdownButton" parentKey="MiniButton" name="MiniButton">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent.NightModeButton" relativePoint="TOP" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString text="AAA_MENU_MINIMAPBUTTON" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="-21"/>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_DISABLED" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="RIGHT">
+							<Color r="1" g=".82" b="0"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="21"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick function="MiniButton_OnClick"/>
+					<OnEnter function="MiniButton_OnEnter"/>
+				</Scripts>
+			</Button>
+
+			<Button inherits="SettingsDropdownButton" parentKey="DarkenButton" name="DarkenButton">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent.MiniButton" relativePoint="TOP" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString text="AAA_MENU_DARKEN" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="-21"/>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentName" parentKey="ButtonName" text="AAA_MENU_ENABLED" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="RIGHT">
+							<Color r="1" g=".82" b="0"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="21"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick function="DarkenSwitchButton_OnClick"/>
+					<OnEnter function="DarkenSwitchButton_OnEnter"/>
+				</Scripts>
+			</Button>
+
+			<Button inherits="SettingsDropdownButton" parentKey="LittleThingsButton" name="LittleThingsButton">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent.DarkenButton" relativePoint="TOP" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString text="AAA_MENU_LITTLETHINGS" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Color r="1" g="1" b="1" a="1"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="-21"/>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentName" parentKey="ButtonName" text= " " inherits="CardParagraphWhiteTiny" spacing="0" justifyH="RIGHT">
+							<Color r="1" g=".82" b="0" a="1"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="21"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick function="LittleThingsButton_OnClick"/>
+					<OnEnter function="LittleThingsButton_OnEnter"/>
+				</Scripts>
+			</Button>
+
+			<Button inherits="SettingsDropdownButton" parentKey="VersionButton" name="VersionButton">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="19.5"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString text="AAA_MENU_VERSION" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="LEFT">
+							<Color r="1" g="1" b="1" a="0.5"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="-21"/>
+							</Anchors>
+						</FontString>
+						<FontString text="AAA_MENU_VERSION_STRING" inherits="CardParagraphWhiteTiny" spacing="0" justifyH="RIGHT">
+							<Color r="1" g="1" b="1" a="0.5"/>
+							<Size x="144" y="22"/>
+							<Anchors>
+								<Anchor point="CENTER" x="21"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<HighlightTexture hidden="true"/>
+				<Scripts>
+					<OnClick />
+					<OnEnter function="VersionButton_OnEnter"/>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+
+
+
+	<Frame name="Blackscreen" parentKey="Blackscreen" parent="UIParent" frameStrata="BACKGROUND" setAllPoints="true" hidden="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+			<Texture parentKey="Black" setAllPoints="true" alphaMode="BLEND">
+				<Color r="0" g="0" b="0" a="0"/>
+			</Texture>		
+			</Layer>
+		</Layers>
+		<Animations>
+			<AnimationGroup parentKey="animIn">
+				<Alpha fromAlpha="1" toAlpha="0" duration="0" order="1"/>
+				<Alpha fromAlpha="0" toAlpha="1" duration="1" order="2"/>
+				<Scripts>
+					<OnPlay>
+						self:GetParent():Show();
+					</OnPlay>
+				</Scripts>
+			</AnimationGroup>
+			<AnimationGroup parentKey="animOut">
+				<Alpha parentKey="OutAlpha" fromAlpha="1" toAlpha="0" duration="0.5" order="1"/>
+				<Scripts>
+					<OnFinished>
+						self:GetParent():Hide();
+					</OnFinished>
+				</Scripts>
+			</AnimationGroup>
+		</Animations>
+		<Scripts>
+
+		</Scripts>
+	</Frame>
+
+
+
+	<Frame name="AAA_Journal" frameStrata="HIGH" setAllPoints="false" hidden="false" frameLevel="2" enableMouse="true" movable="true">
+		<Size>                      <!--*0.75-->
+			<AbsDimension x="798" y="505"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" />
+		</Anchors>
+		<Frames>
+			<Button parentKey="ResetButton" registerForClicks="RightButtonUp" Alpha="0">
+				<Size x="10" y="16"/>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="TOP" x="-100" y="0"/>
+					<Anchor point="BOTTOMRIGHT" relativePoint="TOP" x="100" y="0"/>
+				</Anchors>
+				<ButtonText inherits="CardParagraphWhiteTiny" justifyH="CENTER" justifyV="MIDDLE" text="Right-click Here to Reset Position">
+					<Size x="0" y="0"/>
+					<Color r="0" g="0.0" b="0.0"/>
+					<Shadow>
+						<Offset>
+							<AbsDimension x="0.6" y="-0.6"/>
+						</Offset>
+						<Color r="1" g="1" b="1"/>
+					</Shadow>
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+				</ButtonText>
+				<Layers>
+					<Layer level="ART" textureSubLevel="3">
+						<Texture setAllPoints="true">
+							<Color r="1" g="1.0" b="1.0" a="1"/>
+                            <Gradient orientation="VERTICAL">
+                                <MinColor a="1" r="0.6" g="0.6" b="0.6"/>
+                                <MaxColor a="1" r="1" g="1" b="1"/>
+                            </Gradient>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick function="AAA_ResetPosition"/>
+					<OnEnter>
+						if AAA_Journal:IsUserPlaced() then
+							UIFrameFadeIn(self,0.15,self:GetAlpha(),1);
+						end
+					</OnEnter>
+					<OnLeave>
+						UIFrameFadeOut(self,0.25,self:GetAlpha(),0);
+					</OnLeave>
+				</Scripts>
+			</Button>
+			<Frame name="$parentBackground" parentKey="LeftInset" enableMouse="false">
+				<Size>                      <!--*0.75-->
+					<AbsDimension x="798" y="505"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" />
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\JournalElements">
+							<TexCoords left="0" right=" 0.51953125 " top="0" bottom=" 0.6572265625 "/>
+						</Texture>
+					</Layer>
+				</Layers>
+				
+				<Scripts>
+
+				</Scripts>
+			</Frame>
+
+			<Frame name="$parentBottomPanel" parentKey="JournalBottomPanel" inherits="JournalBottomPanelTemplate" frameLevel="2">                   <!--*0.8-->
+				<Anchors>
+					<Anchor point="TOP" relativeKey="$parent.LeftInset" relativePoint="BOTTOM" x="0" y="20"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						AAA_UpdateProgress(nil);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+
+			<Frame name="$parentFilter" parentKey="Filter" inherits="JournalFilterDownMenuTemplate" hidden="true">                 <!--*0.8-->
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent.LeftInset" relativePoint="BOTTOM" x="-75" y="10"/>
+				</Anchors>
+				<Scripts>
+
+				</Scripts>
+			</Frame>
+
+			<Frame name="$parentFilter" parentKey="Settings" inherits="JournalSettingsDownMenuTemplate" hidden="true">                 <!--*0.8-->
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent.LeftInset" relativePoint="BOTTOM" x="99" y="10"/>
+				</Anchors>
+				<Scripts>
+
+				</Scripts>
+			</Frame>
+			
+
+
+
+
+			<ScrollFrame name="$parentVirtualFrame" parentKey="VirtualFrame" hidden="true">
+				<Anchor point="CENTER"/>
+				<Frames>
+
+
+				<Frame name="$parentDisplay" parentKey="JournalDisplay"	>
+					<Size x="475" y="475"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.$parent.LeftInset" relativePoint="TOPRIGHT" x="-15" y="-15"/>
+					</Anchors>
+					<Layers>
+					
+						<Layer level="ARTWORK">
+							<Texture parentKey="DisplayBottomLayer">
+							</Texture>
+						</Layer>
+
+					</Layers>	
+					<Scripts>
+						<OnEnter function="JournalDisplay_OnEnter"/>
+						<OnLeave function="JournalDisplay_OnLeave"/>
+					</Scripts>
+				</Frame>
+
+				<Button name="PinButton" parentKey="JournalPinButton" frameLevel="9" Alpha="0">
+					<Size x="77" y="99"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.JournalDisplay" relativePoint="TOP" x="70" y="22"/>
+					</Anchors>
+					<Layers>
+						<Layer level="OVERLAY" >
+							<Texture file= "Interface\\AddOns\\AzerothAdventureAlbum\\ART\\Card\\Pin1" parentKey="PinButtonDown" hidden="true">
+								<TexCoords left="0" right="0.5" top="0" bottom="0.640625"/>
+							</Texture>
+						</Layer>
+						<Layer level="OVERLAY">
+							<Texture file= "Interface\\AddOns\\AzerothAdventureAlbum\\ART\\Card\\Pin1" parentKey="PinButtonUp" hidden="true">
+								<TexCoords left="0.5" right="1" top="0" bottom="0.640625"/>
+							</Texture>
+						</Layer>
+					</Layers>
+					<Scripts>
+						<OnLeave>
+							self:GetParent().JournalTestBackground.animIn:Stop();
+							if (not AAA_Journal.VirtualFrame.JournalPinButton.PinButtonDown:IsShown() ) then
+								--self:SetAlpha(0);
+								UIFrameFadeOut(self,0.15,1,0);
+							end
+							GameTooltip:Hide();
+							self.showingTooltip = false;
+						</OnLeave>
+						<OnEnter>
+							self:GetParent().JournalTestBackground.animOut:Stop();
+							AAA_PinButton_OnEnter(self);
+
+							if (self:GetAlpha() ~= 1) then
+								UIFrameFadeIn(self,0.15,0,1);
+							end
+						</OnEnter>
+						<OnClick function="AAA_PinButton_OnClick"/>
+					</Scripts>
+				</Button>
+
+				<Frame name="$parentDisplayTopLayer" parentKey="JournalDisplayTopLayer">
+					<Size x="475" y="475"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.$parent.LeftInset" relativePoint="TOPRIGHT" x="-15" y="-15"/>
+					</Anchors>
+					<Animations>
+						<AnimationGroup parentKey="animIn">
+							<Alpha fromAlpha="1" toAlpha="0" duration="0" order="1"/>
+							<Alpha fromAlpha="0" toAlpha="1" duration="0.5" order="2"/>
+						</AnimationGroup>
+					</Animations>
+					<Layers>	
+						<Layer level="OVERLAY" textureSubLevel="1">
+							<Texture parentKey="Display" file="Interface\AddOns\AzerothAdventureAlbum\ART\Album\DefaultCover">
+							</Texture>
+						</Layer>
+					</Layers>	
+					<Scripts>
+	
+					</Scripts>
+				</Frame>
+
+				<Frame name="$parentTestBackground" parentKey="JournalTestBackground" frameLevel="8" hidden="true">
+					<Size x="475" y="475"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.$parent.LeftInset" relativePoint="TOPRIGHT" x="-15" y="-15" />
+					</Anchors>
+					<Animations>
+						<AnimationGroup parentKey="animIn">
+							<Alpha fromAlpha="1" toAlpha="0" duration="0" order="1"/>
+							<Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="2"/>
+							<Scripts>
+								<OnFinished>
+									self:GetParent():Show();
+								</OnFinished>
+							</Scripts>
+						</AnimationGroup>
+						<AnimationGroup parentKey="animOut">
+							<Alpha fromAlpha="0" toAlpha="1" duration="0" order="1"/>
+							<Alpha fromAlpha="1" toAlpha="0" duration="0.2" order="2"/>
+							<Scripts>
+								<OnFinished>
+									AAA_Journal.VirtualFrame.JournalTestBackground:Hide();
+								</OnFinished>
+								<OnPaused>
+									--print("animOut Paused");
+								</OnPaused>
+							</Scripts>
+						</AnimationGroup>
+					</Animations>
+					<Layers>
+						<Layer level="ART">
+							<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\Paper" parentKey="LocationBackground">
+								<Size x="256" y="78"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeKey="$parent.Lore" relativePoint="TOPLEFT" x="20" y="-10"/>
+								</Anchors>
+								<TexCoords left="0" right="0.5" top="0" bottom="0.3046875"/>
+							</Texture>
+						</Layer>
+
+						<Layer level="BACKGROUND">
+							<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\Paper" parentKey="LoreBackground">
+							<Size x="256" y="0"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeKey="$parent.Lore" relativePoint="TOPLEFT" x="20" y="-75"/>
+							</Anchors>
+							<TexCoords left="0.5" right="1" top="0" bottom="0.875"/>
+							</Texture>
+						</Layer>
+
+						<Layer level="OVERLAY">
+							<FontString inherits="CardHeader" text= "CARD_LOCATION" justifyH="LEFT" justifyV="LEFT" parentKey="Name" maxLines="1" outline="NORMAL">
+							<Color r="1" g=".82" b="0"/>
+								<Size x="270" y="35"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeKey="$parent.JournalTestBackground" relativePoint="TOPLEFT" x="29" y="-10"/>
+								</Anchors>
+							</FontString>
+							<FontString name="$parentSource" inherits="CardParagraphWhiteTiny" spacing="2" text="&lt;19.93 12.08&gt;" justifyH="LEFT" justifyV="TOP" parentKey="Source">
+								<Size x="236" y="50"/>
+								<Color r="0.18" g="0.12" b="0.06"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeKey="$parent.JournalTestBackground" relativePoint="TOPLEFT"  x="30" y="-40"/>
+								</Anchors>
+							</FontString>
+
+							<FontString inherits="CardHeader" text= "CARD_LORE" justifyH="LEFT" justifyV="LEFT" parentKey="Name" maxLines="1">
+								<Size x="270" y="35"/>
+								<Color r="1" g=".82" b="0"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeKey="$parent.JournalTestBackground" relativePoint="TOPLEFT" x="29" y="-85"/>
+								</Anchors>
+							</FontString>
+							<FontString name="$parentLore" inherits="CardParagraphWhiteTiny" spacing="2" text= "CARD_LORE_LOCKED" justifyH="LEFT" parentKey="Lore">
+								<Size x="236" y="0"/>
+								<Color r="0.18" g="0.12" b="0.06"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeKey="$parent.JournalTestBackground" relativePoint="TOPLEFT"  x="30" y="-115"/>
+								</Anchors>
+							</FontString>
+							<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\Paper" parentKey="LocationBackgroundBottom" >
+								<Size x="256" y="32"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeKey="$parent.Lore" relativePoint="BOTTOMLEFT" x="-10" y="5"/>
+								</Anchors>
+								<TexCoords left="0" right="0.5" top="0.875" bottom="1"/>
+							</Texture>
+						</Layer>
+					</Layers>	
+					<Scripts>
+						<OnShow>
+							TextBottomBorder();
+						</OnShow>
+					</Scripts>
+				</Frame>
+
+				<Frame name="$parentLeftTab" parentKey="JournalLeftTab" frameLevel="4">
+					<Size x="313.66" y="475"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent.$parent.LeftInset" relativePoint="LEFT" x="16" y="0"/>
+					</Anchors>
+					<Layers>
+					
+						<Layer level="OVERLAY" textureSubLevel="2">
+							<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\JournalElements">
+								<TexCoords left="0.52294921875" right="0.72705078125" top="0.0703125" bottom=" 0.6376953125 "/>
+							</Texture>
+						</Layer>
+
+					</Layers>
+					
+					<Scripts>
+
+					</Scripts>
+				</Frame>
+
+				<Frame name="$parentListTop" parentKey="JournalListTop" frameLevel="8">
+					<Size x="290" y="17"/>
+					<Anchors>
+						<Anchor point="TOP" relativeKey="$parent.JournalLeftTab" relativePoint="TOP" x="-12" y="0"/>
+					</Anchors>
+					<Layers>				
+						<Layer level="BACKGROUND">
+							<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\JournalElements">
+								<TexCoords left=" 0.72705078125 " right=" 0.92919921875 " top=" 0.0205078125 " bottom="0.0419921875"/>
+							</Texture>
+						</Layer>
+					</Layers>
+				</Frame>
+
+				<Frame name="$parentListBottom" parentKey="JournalListBottom" frameLevel="8">
+					<Size x="290" y="17"/>
+					<Anchors>
+						<Anchor point="BOTTOM" relativeKey="$parent.JournalLeftTab" relativePoint="BOTTOM" x="-12" y="0"/>
+					</Anchors>
+					<Layers>				
+						<Layer level="BACKGROUND">
+							<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\JournalElements">
+								<TexCoords left=" 0.72705078125 " right=" 0.92919921875 " top="0.0419921875" bottom=" 0.064453125 "/>
+							</Texture>
+						</Layer>
+					</Layers>
+				</Frame>
+
+				</Frames>
+			</ScrollFrame>
+
+			<Button name="CloseButton" parentKey="CloseButton" inherits="CloseButtonTemplate" frameLevel="15">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.VirtualFrame.JournalDisplay" relativePoint="TOPRIGHT" x="-4" y="-4"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						AAA_HidePanel();
+						DoEmote("Read", "none");
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="BackButton" parentKey="BackButton" frameLevel="6" hidden="true">
+				<Size x="12" y="12"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.CloseButton" relativePoint="TOPRIGHT" x="-18" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK" >
+						<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\BackButton" Alpha="1">
+						</Texture>
+					</Layer>
+				</Layers>
+				<Layers>
+					<Layer level="OVERLAY" >
+						<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\BackButton-highlight" Alpha="0" alphaMode="ADD" parentKey="White" hidden="true">
+						</Texture>
+					</Layer>
+				</Layers>
+				<HighlightTexture file="Interface\AddOns\AzerothAdventureAlbum\Art\Card\BackButton-highlight" Alpha="0.5" alphaMode="ADD">
+				<Size x="12" y="12"/>
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<TexCoords left="0" right="1" top="0" bottom="1"/>
+				</HighlightTexture>	
+				<Scripts>
+					<OnClick function="AAA_BackButton_OnClick"/>
+					<OnEnter function="AAA_BackButton_OnEnter"/>
+					<OnLeave>
+						GameTooltip:Hide();
+						self.showingTooltip = false;
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="VirtualButton" frameLevel="5" enableMouse="false" parentKey="VirtualButton">
+				<Size x="120" y="120"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.CloseButton" relativePoint="TOPRIGHT" x="20" y="20"/>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						UIFrameFadeIn(self:GetParent().CloseButton.White, 0.3, self:GetParent().CloseButton.White:GetAlpha(), 0.5)
+						UIFrameFadeIn(self:GetParent().BackButton.White, 0.3, self:GetParent().CloseButton.White:GetAlpha(), 0.5)
+					</OnEnter>
+					<OnLeave>
+					    if not self:IsMouseOver(0,0,0,0) then
+							UIFrameFadeOut(self:GetParent().CloseButton.White, 0.5, 0.5, 0)
+							UIFrameFadeOut(self:GetParent().BackButton.White, 0.5, 0.5, 0)
+						end
+					</OnLeave>
+				</Scripts>
+			</Button>
+			
+			<ScrollFrame name="$parentListScrollFrame" parentKey="ListScrollFrame" frameLevel="4" hidden="true">
+				<Size x="293" y="100"/>
+				<Scripts>
+					<OnLoad function="HybridScrollFrame_OnLoad"/>
+				</Scripts>
+				<ScrollChild>
+					<Frame name="$parentScrollChild" parentKey="ScrollChild">
+						<Scripts>
+							<OnLoad function="HybridScrollFrameScrollChild_OnLoad"/>
+						</Scripts>
+					</Frame>
+
+				</ScrollChild>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.LeftInset" x="10" y="-18"/>
+					<Anchor point="BOTTOMLEFT" relativeKey="$parent.LeftInset" x="10" y="18" />
+				</Anchors>
+				<Animations>
+					<AnimationGroup parentKey="animIn">
+						<Alpha fromAlpha="0" toAlpha="1" duration="0.15" order="2"/>
+						<Scripts>
+						</Scripts>
+					</AnimationGroup>
+					<AnimationGroup parentKey="animOut">
+						<Alpha fromAlpha="1" toAlpha="0" duration="0.15" order="2"/>
+						<Scripts>
+							<OnFinished>
+								Journal_UpdateList();
+								self:GetParent().scrollBar:SetValue(72)
+								self:GetParent().scrollBar:SetValue(0)
+								self:GetParent().animIn:Play();
+							</OnFinished>
+						</Scripts>
+					</AnimationGroup>
+				</Animations>
+				<Layers>
+					<Layer level="OVERLAY" textureSubLevel="3">
+						<Texture setAllPoints="true">
+							<Color r="0.0" g="0.0" b="0.0" a="0"/>
+						</Texture>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<Slider name="$parentScrollBar"  parentKey="scrollBar" frameLevel="10">
+						<Size x="20" y="0"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="-10" y="0"/>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+						</Anchors>
+						<Layers>
+	
+						</Layers>
+						<Frames>
+							<Button name="$parentScrollUpButton" parentKey="UpButton" inherits="ScrollUpButtonTemplate">
+								<Anchors>
+									<Anchor point="BOTTOM" relativePoint="TOP" x="0" y="-10"/>
+								</Anchors>
+								<Scripts>
+									<OnLoad function="HybridScrollFrameScrollUp_OnLoad"/>
+									<OnClick  function="HybridScrollFrameScrollButton_OnClick"/>
+								</Scripts>
+							</Button>
+							<Button name="$parentScrollDownButton" parentKey="DownButton" inherits="ScrollDownButtonTemplate">
+								<Anchors>
+									<Anchor point="TOP" relativePoint="BOTTOM" x="0" y="10"/>
+								</Anchors>
+								<Scripts>
+									<OnLoad function="HybridScrollFrameScrollDown_OnLoad"/>
+									<OnClick function="HybridScrollFrameScrollButton_OnClick"/>
+								</Scripts>
+							</Button>
+						</Frames>
+						<Scripts>
+							<OnValueChanged function="HybridScrollFrame_OnValueChangedT"/>
+							<OnLoad>
+								self:SetAlpha(0.5)
+							</OnLoad>
+						</Scripts>
+
+
+						<ThumbTexture setAllPoints="true" parentKey="thumbTexture">
+							<Size x="8" y="0"/>
+							<Color r="1" g="1" b="1" a="0.1"/>
+						</ThumbTexture>		
+					</Slider>
+				</Frames>
+
+				
+			</ScrollFrame>
+		
+			<ScrollFrame name="$parentListScrollFrame2" parentKey="ListScrollFrame2" frameLevel="4" enableMouse="false" enableMouseMotion="false" enableMouseClicks="false">
+				<Size x="760" y="540"/>
+				<Scripts>
+					<OnMouseWheel function="HybridScrollFrame_OnMouseWheel_Horizontal"/>
+				</Scripts>
+				<HitRectInsets>
+					<AbsInset left="0" right="0" top="0" bottom="10"/>
+				</HitRectInsets>
+				<ScrollChild>
+					<Frame name="$parentScrollChild" parentKey="ScrollChild">
+						<Scripts>
+							<OnLoad function="HybridScrollFrameScrollChild_OnLoad"/>
+						</Scripts>
+					</Frame>
+
+				</ScrollChild>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.LeftInset" x="20" y="-20"/>
+				</Anchors>
+				<Frames>
+
+					<Slider name="$parentScrollBar"  parentKey="scrollBar" hidden="true" Alpha="0" enableMouse="false">
+						<Size x="20" y="0"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="-10" y="0"/>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+						</Anchors>
+						<Layers>
+	
+						</Layers>
+						<Frames>
+							<Frame name="$parentRightOverlay" parentKey="RightOverlay">
+								<Size x="40" y="470"/>
+								<Anchors>
+									<Anchor point="TOP" relativeKey="$parent" relativePoint="TOP" x="-18" y="3"/>
+								</Anchors>
+								<Layers>
+									<Layer level="OVERLAY" textureSubLevel="5">
+										<Texture  file="Interface\AddOns\AzerothAdventureAlbum\Art\Card\CardShelf">
+											<TexCoords left="0.94140625" right="1" top="0" bottom="0.607421875"/>
+										</Texture>
+									</Layer>
+								</Layers>
+							</Frame>
+							<Frame name="$parentLeftOverlay" parentKey="LeftOverlay" hidden="true">
+								<Size x="40" y="470"/>
+								<Anchors>
+									<Anchor point="TOP" relativeKey="$parent" relativePoint="TOP" x="-746" y="3"/>
+								</Anchors>
+								<Layers>
+									<Layer level="OVERLAY" textureSubLevel="5">
+										<Texture parentKey="LeftOverlay" file="Interface\AddOns\AzerothAdventureAlbum\Art\Card\CardShelf">
+											<TexCoords left="0.8818359375" right="0.94140625" top="0" bottom="0.607421875"/>
+										</Texture>
+									</Layer>
+								</Layers>
+							</Frame>	
+							<Button name="$parentScrollUpButton" parentKey="UpButton" inherits="ScrollUpButtonTemplate" Alpha="0" ignoreParentAlpha = "true">
+								<Size x="0" y="0"/>
+								<Anchors>
+									<Anchor point="BOTTOM" relativePoint="TOP" x="0" y="-10"/>
+								</Anchors>
+								<Scripts>
+									<OnLoad function="HybridScrollFrameScrollUp_OnLoad"/>
+									<OnClick  function="HybridScrollFrameScrollButton_OnClick"/>
+								</Scripts>
+							</Button>
+							<Button name="$parentScrollDownButton" parentKey="DownButton" inherits="ScrollDownButtonTemplate" Alpha="0" ignoreParentAlpha = "true">
+								<Size x="0" y="0"/>
+								<Anchors>
+									<Anchor point="TOP" relativePoint="BOTTOM" x="0" y="10"/>
+								</Anchors>
+								<Scripts>
+									<OnLoad function="HybridScrollFrameScrollDown_OnLoad"/>
+									<OnClick function="HybridScrollFrameScrollButton_OnClick"/>
+								</Scripts>
+							</Button>
+						</Frames>
+						<Scripts>
+							<OnValueChanged function="HybridScrollFrame_OnValueChanged_Horizontal"/>
+							<OnLoad>
+								self:SetAlpha(1)
+							</OnLoad>
+						</Scripts>
+
+
+						<ThumbTexture setAllPoints="false" parentKey="thumbTexture">
+							<Size x="8" y="0"/>
+							<Color r="1" g="1" b="1" a="0"/>
+						</ThumbTexture>		
+					</Slider>
+				</Frames>
+			</ScrollFrame>
+
+		</Frames>
+		<HitRectInsets>
+			<AbsInset left="-5" right="-5" top="-5" bottom="18"/>
+		</HitRectInsets>
+		<Scripts>
+			<OnLoad>
+				Journal_OnLoad(self)
+				self:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnEnter>
+				if not (self.ListScrollFrame:IsMouseOver() or self.ListScrollFrame2:IsMouseOver() ) then
+					SetCursor("Interface/CURSOR/UI-Cursor-Move.blp");
+				end
+			</OnEnter>
+			<OnLeave>
+				ResetCursor();
+			</OnLeave>
+			<OnDragStart>
+				self:StartMoving();
+				UIFrameFadeIn(self.ResetButton,0.15,self.ResetButton:GetAlpha(),1);
+			</OnDragStart>
+			<OnDragStop>
+				self:StopMovingOrSizing();
+				C_Timer.After(2, function()
+					UIFrameFadeOut(self.ResetButton,0.4,self.ResetButton:GetAlpha(),0);
+				end)
+			</OnDragStop>
+		</Scripts>
+	</Frame>
+
+	<Frame name="IntroFrame" frameStrata="DIALOG" hidden="false" Alpha="1" enableMouse="false">
+		<Size>
+			<AbsDimension x="418" y="314"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="AAA_Journal" x="0" y="-10"/>
+		</Anchors>
+		<Frames>
+			<Frame name="$parentBlur">
+				<Size>
+					<AbsDimension x="798" y="525"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Intro">
+							<TexCoords left="0" right=" 0.51953125 " top="0" bottom=" 0.68359375 "/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>
+					 --self:GetParent().animIn:Play();
+					</OnEnter>
+					<OnLeave>
+
+					</OnLeave>					
+				</Scripts>
+			</Frame>
+			<Frame name="$parentBorder" parentKey="border">
+				<Size>
+					<AbsDimension x="475" y="370"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER" x="0" y="10"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BORDER">
+						<Texture inherits="PopUpTemplate" parentKey="Shadow" file="Interface\AddOns\AzerothAdventureAlbum\ART\Intro">
+							<TexCoords left="0.51953125" right="0.82861328125" top="0" bottom="0.4814453125"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Animations>
+					<AnimationGroup parentKey="animOut" smoothing="OUT">
+						<Scale scaleX="0.5" scaleY="0.5" duration="0.2" order="1"/>
+					</AnimationGroup>
+				</Animations>
+			</Frame>
+
+			<Frame name="$parentImage" parentKey="image">
+				<Size>
+					<AbsDimension x="418" y="314"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeKey="$parent.border" relativePoint="CENTER" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ART" >
+						<Texture inherits="PopUpTemplate" parentKey="Background" textureSubLevel="1">
+							<TexCoords left="0" right="1" top="0" bottom="0.75"/>
+						</Texture>
+
+						<MaskTexture inherits="PopUpTemplate" parentKey="ImageMask" file="Interface\AddOns\AzerothAdventureAlbum\ART\Intro-Mask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+							<TexCoords left="0" right="1" top="0" bottom="0.75"/>
+							<Size>
+								<AbsDimension x="418" y="314"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOM"/>
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+							</Anchors>
+							<MaskedTextures>
+								<MaskedTexture childKey="Background"/>
+							</MaskedTextures>
+						</MaskTexture>
+					</Layer>
+					<Layer level="OVERLAY" >
+						<FontString parentKey="Title" hidden="true" inherits="CardHeader" justifyH="LEFT" text="Patch Notes">
+							<Size x="80" y="35"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOP" x="-34" y="-4"/>
+							</Anchors>
+							<Animations>
+								<AnimationGroup parentKey="animIn" smoothing="OUT">
+									<Alpha fromAlpha="0" toAlpha="0" duration="0" order="1"/>
+									<Alpha startDelay="0.3" fromAlpha="0" toAlpha="1" duration="0.3" order="2"/>
+									<Scripts>
+										<OnPlay>
+											self:GetParent():Show()
+										</OnPlay>
+										<OnFinished>
+											--self:GetParent():GetParent().SubTitle.animIn:Play();
+										</OnFinished>	
+									</Scripts>
+								</AnimationGroup>
+							</Animations>
+						</FontString>
+
+						<FontString inherits="FontStringFadeInTemplate" parentKey="SubTitle" virtual="true">
+							<Size x="225" y="300"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeKey="$parent.Title" relativePoint="BOTTOMLEFT" x="0" y="-6"/>
+							</Anchors>
+
+						</FontString>
+
+						<Texture setAllPoints="true" parentKey="Dividing" >
+							<Size>
+								<AbsDimension x="250" y="0.6"/>
+							</Size>
+							<Color r="1" g="1" b="1" a="1"/>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="0" y="42"/> <!--18 40-->
+							</Anchors>	
+						</Texture>
+
+						<FontString parentKey="Description" inherits="CardParagraphWhiteTiny" justifyH="CENTER" justifyV="BOTTOM" spacing="2">
+							<Size x="0" y="20"/>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeKey="$parent.Dividing" relativePoint="TOP" x="0" y="4"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Animations>
+					<AnimationGroup parentKey="animOut" smoothing="OUT">
+						<Scale scaleX="0.5" scaleY="0.5" duration="0.2" order="1"/>
+					</AnimationGroup>
+				</Animations>
+			</Frame>
+
+			<Frame name="$parentImage" parentKey="PatchPic">
+				<Size>
+					<AbsDimension x="160" y="314"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.image" relativePoint="LEFT" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture hidden="true" parentKey="image" file="Interface\AddOns\AzerothAdventureAlbum\ART\AD\PatchPic">
+							<Size>
+								<AbsDimension x="160" y="314"/>
+							</Size>
+							<TexCoords left="0" right="1" top="0" bottom="1"/>
+						</Texture>
+						<MaskTexture file="Interface\AddOns\AzerothAdventureAlbum\ART\Intro-Mask2" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+							<TexCoords left="0" right="0.3828125" top="0" bottom="0.75"/>
+							<Size>
+								<AbsDimension x="160" y="314"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT"/>
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+							</Anchors>
+							<MaskedTextures>
+								<MaskedTexture childKey="image"/>		
+							</MaskedTextures>
+						</MaskTexture>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Button name="PatchNoteButton1" inherits="PatchNoteButtonTemplate" parentKey="Button1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.image.Title" relativePoint="BOTTOMLEFT" x="0" y="-6"/>
+				</Anchors>
+				<Animations>
+					<AnimationGroup parentKey="animIn" smoothing="OUT">
+						<Alpha fromAlpha="0" toAlpha="0" duration="0" order="1"/>
+						<Alpha startDelay="0.9" fromAlpha="0" toAlpha="1" duration="0.3" order="2"/>
+						<Scripts>
+							<OnPlay>
+								self:GetParent():Show()
+							</OnPlay>	
+						</Scripts>
+					</AnimationGroup>
+				</Animations>
+				<Scripts>
+					<OnLoad>
+						self.Text:SetText(IntroList[0]["SubTitle"][1])
+						local height = self.Text:GetHeight();
+						self:SetHeight(height)
+						self.Indicator:SetHeight(height-14)
+					</OnLoad>
+					<OnEnter>
+						PlaySound(100)
+						self.Indicator:Show()
+						IntroFrame.PatchPic.image:Show();
+						IntroFrame.PatchPic.image:SetTexCoord(0, 0.3333, 0, 0.65527);
+					</OnEnter>
+					<OnLeave>
+						self.Indicator:Hide()
+					</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="PatchNoteButton2" inherits="PatchNoteButtonTemplate" parentKey="Button2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.Button1" relativePoint="BOTTOMLEFT" x="0" y="-12"/>
+				</Anchors>
+				<Animations>
+					<AnimationGroup parentKey="animIn" smoothing="OUT">
+						<Alpha fromAlpha="0" toAlpha="0" duration="0" order="1"/>
+						<Alpha startDelay="1.5" fromAlpha="0" toAlpha="1" duration="0.3" order="2"/>
+						<Scripts>
+							<OnPlay>
+								self:GetParent():Show()
+							</OnPlay>	
+						</Scripts>
+					</AnimationGroup>
+				</Animations>
+				<Scripts>
+					<OnLoad>
+						self.Text:SetText(IntroList[0]["SubTitle"][2])
+						local height = self.Text:GetHeight();
+						self:SetHeight(height)
+						self.Indicator:SetHeight(height-14)
+					</OnLoad>
+					<OnEnter>
+						PlaySound(100)
+						self.Indicator:Show()
+						IntroFrame.PatchPic.image:Show();
+						IntroFrame.PatchPic.image:SetTexCoord(0.3333, 0.6666, 0, 0.65527);
+					</OnEnter>
+					<OnLeave>
+						self.Indicator:Hide()
+					</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="PatchNoteButton3" inherits="PatchNoteButtonTemplate" parentKey="Button3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.Button2" relativePoint="BOTTOMLEFT" x="0" y="-12"/>
+				</Anchors>
+				<Animations>
+					<AnimationGroup parentKey="animIn" smoothing="OUT">
+						<Alpha fromAlpha="0" toAlpha="0" duration="0" order="1"/>
+						<Alpha startDelay="2.1" fromAlpha="0" toAlpha="1" duration="0.3" order="2"/>
+						<Scripts>
+							<OnPlay>
+								self:GetParent():Show()
+							</OnPlay>	
+						</Scripts>
+					</AnimationGroup>
+				</Animations>
+				<Scripts>
+					<OnLoad>
+						self.Text:SetText(IntroList[0]["SubTitle"][3])
+						local height = self.Text:GetHeight();
+						self:SetHeight(height)
+						self.Indicator:SetHeight(height-14)
+					</OnLoad>
+					<OnEnter>
+						PlaySound(100)
+						self.Indicator:Show()
+						IntroFrame.PatchPic.image:Show();
+						IntroFrame.PatchPic.image:SetTexCoord(0.6666, 1, 0, 0.65527);
+					</OnEnter>
+					<OnLeave>
+						self.Indicator:Hide()
+					</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="ContinueButton" frameLevel="10"> <!--108x46-->
+				<Size x="81" y="35"/>
+				<Anchors>
+					<Anchor point="BOTTOM" reletiveKey="$parent.image" relativePoint="BOTTOM" x="0" y="15"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface\AddOns\AzerothAdventureAlbum\Art\Intro">
+							<Size x="81" y="35"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+							<TexCoords left=" 0.51953125 " right="0.572265625" top="0.4814453125" bottom=" 0.5263671875 "/>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+					<FontString parentKey="continue" inherits="CardParagraphWhiteTiny" text="AAA_MENU_CONTINUE">
+						<Size x="81" y="35"/>
+						<Anchors>
+							<Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER" x="0" y="0"/>
+						</Anchors>
+					</FontString>
+					</Layer>
+				</Layers>
+				<HighlightTexture file="Interface\AddOns\AzerothAdventureAlbum\Art\Intro" parentKey="ButtonHighlight" alphaMode="ADD">
+					<Size x="83" y="35"/>
+					<TexCoords left=" 0.51953125 " right="0.572265625" top=" 0.5263671875 " bottom=" 0.5712890625 "/>
+				</HighlightTexture>	
+				<Scripts>
+					<OnClick>
+						self:GetParent().animOut:Play();
+						self:GetParent().image.animOut:Play();
+						self:GetParent().border.animOut:Play();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Animations>
+			<AnimationGroup parentKey="animIn">
+				<Alpha fromAlpha="1" toAlpha="0" duration="0" order="1"/>
+				<Alpha fromAlpha="0" toAlpha="1" duration="0.5" order="2"/>
+				<Scripts>
+					<OnPlay>
+						self:GetParent():EnableMouse(true)
+						self:GetParent():Show();
+						self:GetParent().border.Shadow.animIn:Play();
+						self:GetParent().image.Background.animIn:Play();
+						self:GetParent().image.ImageMask.animIn:Play();
+						self:GetParent().image.Title:Hide();	
+						self:GetParent().image.SubTitle:Hide();	
+						self:GetParent().Button1:Hide();
+						self:GetParent().Button2:Hide();
+						self:GetParent().Button3:Hide();
+					</OnPlay>
+					<OnFinished>
+						self:GetParent().image.Title.animIn:Play();	
+						if self:GetParent().image.Title:GetText() ~= nil then
+						self:GetParent().Button1.animIn:Play();
+						self:GetParent().Button2.animIn:Play();
+						self:GetParent().Button3.animIn:Play();	
+						end	
+					</OnFinished>
+				</Scripts>
+			</AnimationGroup>
+			<AnimationGroup parentKey="animOut">
+				<Alpha fromAlpha="0" toAlpha="1" duration="0" order="1"/>
+				<Alpha fromAlpha="1" toAlpha="0" duration="0.2" order="2"/>
+				<Scripts>
+					<OnFinished>
+						self:GetParent():EnableMouse(false)
+						self:GetParent():Hide();
+					</OnFinished>
+				</Scripts>
+			</AnimationGroup>
+		</Animations>
+		<Scripts>
+			<OnLoad function="Intro_OnLoad"/>
+			<OnHide>
+				self.PatchPic.image:Hide();
+			</OnHide>				
+		</Scripts>
+	</Frame>
+	
+	<Button name="AAA_MinimapButton" parent="Minimap" enableMouse="true" movable="true" hidden="true" frameStrata="HIGH" frameLevel="12">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="Bling" parentKey="Bling" file="Interface\AddOns\AzerothAdventureAlbum\ART\LOGO-Bling" hidden="true">
+					<Size>
+						<AbsDimension x="34" y="34"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Animations>
+						<AnimationGroup parentKey="animIn" smoothing="IN">
+							<Scale startDelay="2" scaleX="1.8" scaleY="1.8" duration="0.8" order="1"/>
+							<Alpha startDelay="2.2" fromAlpha="1" toAlpha="0" duration="0.6" order="1"/>
+							<Scripts>
+								<OnPlay>
+									self:GetParent():Show()
+								</OnPlay>
+								<OnFinished>
+									self:GetParent():Hide()
+								</OnFinished>
+							</Scripts>
+						</AnimationGroup>
+					</Animations>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="AAA_MinimapButton_Icon" file="Interface\AddOns\AzerothAdventureAlbum\ART\Minimap\Logo">
+					<TexCoords left="0" right="0.5" top="0" bottom="1"/>
+					<Size>
+						<AbsDimension x="36" y="36"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture parentKey="Color" file="Interface\AddOns\AzerothAdventureAlbum\ART\Minimap\Gradient" hidden="true">
+					<Size>
+						<AbsDimension x="40" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent.AAA_MinimapButton_Icon" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture parentKey="ColorGradient"  file="Interface\AddOns\AzerothAdventureAlbum\ART\Minimap\Gradient" hidden="true">
+					<Size>
+						<AbsDimension x="40" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent.AAA_MinimapButton_Icon" relativePoint="CENTER"/>
+					</Anchors>
+					<Animations>
+						<AnimationGroup parentKey="animIn" looping="REPEAT">
+							<Rotation degrees="360" duration="2" order="1"/>
+						</AnimationGroup>
+					</Animations>
+				</Texture>
+				<MaskTexture parentKey="HexMask" file="Interface\AddOns\AzerothAdventureAlbum\ART\Minimap\Logo-Mask">
+					<Size x="36" y="36"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent.AAA_MinimapButton_Icon" relativePoint="CENTER"/>
+					</Anchors>
+					<MaskedTextures>
+						<MaskedTexture childKey="ColorGradient"/>
+						<MaskedTexture childKey="Color"/>
+					</MaskedTextures>
+				</MaskTexture>
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="2" hidden="true">
+				<Texture parentKey="ShadowGradient"  file="Interface\AddOns\AzerothAdventureAlbum\ART\Minimap\Logo" hidden="true" Alpha="0.6">
+					<TexCoords left="0.5" right="1" top="0" bottom="1"/>
+					<Size>
+						<AbsDimension x="36" y="36"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent.AAA_MinimapButton_Icon" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	
+	
+		<Frames>
+			<Frame name="AAA_MinimapButton_DraggingFrame" hidden="true">
+				<Scripts>
+					<OnUpdate function="AAA_MinimapButton_DraggingFrame_OnUpdate"/>
+				</Scripts>
+			</Frame>
+		</Frames>
+
+		<Scripts>
+			<OnLoad>
+				self:RegisterForClicks("LeftButtonUp","RightButtonUp","MiddleButtonUp")
+				self:RegisterForDrag("LeftButton","RightButton")
+			</OnLoad>
+			<OnDragStart>
+				AAA_MinimapButton_DraggingFrame:Show()
+				print("start")
+			</OnDragStart>
+			<OnDragStop>
+				AAA_MinimapButton_DraggingFrame:Hide()
+				print("stop")
+			</OnDragStop>
+			<OnClick function="AAA_MinimapButton_OnClick"/>
+			<OnEnter>
+				GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT",-20,-100);
+				GameTooltip:SetText(MENU_AAA_GRADIENT, 1, 1, 1);
+				GameTooltip:AddLine(AAA_MENU_CLICK_TO_OPEN, nil, nil, nil, true);
+				GameTooltip:AddLine(AAA_MENU_CLICK_TO_HIDE, nil, nil, nil, true);
+				GameTooltip:Show()
+
+				UIFrameFadeIn(self.ShadowGradient,0.15,0,0.6);
+				UIFrameFadeIn(self.ColorGradient,0.15,0,1);
+				self.ColorGradient.animIn:Play();
+
+				SetCursor("Interface/CURSOR/Inspect.blp");
+			</OnEnter>
+			<OnLeave>
+				ResetCursor();
+				GameTooltip:Hide();
+				self.ColorGradient.animIn:Pause();
+				UIFrameFadeOut(self.ColorGradient,0.15,1,0);
+				if not self.Color:IsShown() then
+					UIFrameFadeOut(self.ShadowGradient,0.15,0.6,0);
+				end
+			</OnLeave>
+			
+		</Scripts>
+	</Button>
+
+	<!--Journal's framestrata is set to HIGH to ensure its priority to WA/TMW. However, this will overlap the world map.
+	So here I create a virtual button as a trigger which will modify the Journal's framestrata when World Map is open/closed-->
+	<Button name="WorldMapStatus" parent="WorldMapFrame">
+		<Scripts>
+			<OnShow>
+				if (AAA_Journal.ListScrollFrame2:GetFrameStrata() == "LOW") then
+				AAA_Journal:SetFrameStrata("MEDIUM");
+				AAA_Journal.ListScrollFrame2:SetFrameStrata("LOW")
+				end
+				<!--Offset the text area so that it won't be overlayed by the world map.-->
+				if AAA_Journal:IsShown() then
+					local point, relativeTo, relativePoint, xOfs, yOfs = AAA_Journal.VirtualFrame.JournalTestBackground:GetPoint();
+					AAA_Journal.VirtualFrame.JournalTestBackground:SetPoint(point, relativeTo, relativePoint, xOfs+200, yOfs)
+				end
+				NightMode.Border:Hide(); <!-- Hide the reflective Album border when the map is open-->
+				AAA_Journal.JournalBottomPanel:SetFrameStrata("LOW") 
+			</OnShow>
+			<OnHide>
+				if (AAA_Journal.ListScrollFrame2:GetFrameStrata() == "LOW") then
+					AAA_Journal:SetFrameStrata("HIGH");
+					AAA_Journal.ListScrollFrame2:SetFrameStrata("LOW")
+				end
+				local point, relativeTo, relativePoint, xOfs, yOfs = AAA_Journal.VirtualFrame.JournalTestBackground:GetPoint();
+				AAA_Journal.VirtualFrame.JournalTestBackground:SetPoint(point, relativeTo, relativePoint, -15, yOfs)
+				NightMode.Border:Show();
+				AAA_Journal.JournalBottomPanel:SetFrameStrata("LOW") 
+			</OnHide>
+		</Scripts>
+	</Button>
+
+	<Frame name="AAASwitch" hidden="true">
+		<Scripts>
+			<OnLoad>
+				tinsert(UISpecialFrames, self:GetName())
+			</OnLoad>
+			<OnShow function="AAASwitch_OnShow"/>	
+			<OnHide function="AAASwitch_OnHide"/>
+		</Scripts>
+	</Frame>
+</Ui>

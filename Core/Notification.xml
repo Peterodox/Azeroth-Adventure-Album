@@ -1,0 +1,155 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Notification.lua"/>
+	<Button name="JournalNotificationTemplate" hidden="true" frameLevel="63" frameStrata="TOOLTIP" virtual="true">
+		<Size x="256" y="68.5"/> <!--545.375 142-->
+		<Anchors>
+			<Anchor point="CENTER" relativePoint="BOTTOM" x="0" y="154"/>
+		</Anchors>
+		<Animations>
+			<AnimationGroup parentKey="animIn">
+				<Alpha fromAlpha="0" toAlpha="0" duration="0" order="1"/>
+				<Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="2"/>
+				<Scripts>
+					<OnFinished>
+						--self:GetParent():Hide();
+					</OnFinished>
+				</Scripts>
+			</AnimationGroup>
+			<AnimationGroup parentKey="waitAndAnimOut">
+
+				<Alpha startDelay="4.05" fromAlpha="1" toAlpha="1" duration="1.5" parentKey="animOut">
+					<Scripts>
+						<OnFinished>
+							<!--self:GetRegionParent():Hide();-->
+							
+						</OnFinished>
+					</Scripts>
+				</Alpha>
+			</AnimationGroup>
+
+		</Animations>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\Notification">
+					<TexCoords left="0" right="1" top="0" bottom=" 0.251953125 "/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture parentKey="Background" alphaMode="BLEND" Alpha="0">
+					<Size x ="194" y="48"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER" x="-2" y="0"/>
+					</Anchors>
+									
+					<Animations>
+						<AnimationGroup parentKey="animIn">
+							<Alpha startDelay="3" fromAlpha="0" toAlpha="0.4" duration="1" order="1"/>
+							<Alpha startDelay="3" fromAlpha="0.4" toAlpha="0" duration="2" order="2"/>
+							<Scripts>
+								<OnLoad>
+									self:Play();
+								</OnLoad>
+								<OnFinished>
+									self:GetParent():SetAlpha(0);
+									self:Play();
+								</OnFinished>
+							</Scripts>
+						</AnimationGroup>
+					</Animations>
+				</Texture>	
+			</Layer>
+
+			<Layer level="OVERLAY"  textureSubLevel="1">
+
+
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\Notification">
+					<Size x="256" y="68.5"/>
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0.251953125" bottom=" 0.50390625 "/>
+				</Texture>
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\Notification" alphaMode="ADD" parentKey="Bling">
+					<Size x="256" y="68.5"/>
+					<Anchors>
+						<Anchor point="CENTER" x="-30" y="0"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0.50390625" bottom=" 0.755859375 "/>
+					<Animations>
+						<AnimationGroup parentKey="animIn">
+							<Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="1"/>
+							<Translation offsetX="155" offsetY="0" duration="2.2" order="1"/>
+							<Alpha startDelay="1.7" fromAlpha="1" toAlpha="0" duration="0.5" order="1"/>
+							<Scripts>
+								<OnLoad>
+									self:Play();
+								</OnLoad>
+								<OnFinished>
+									self:GetParent():Hide();
+								</OnFinished>
+							</Scripts>
+						</AnimationGroup>
+					</Animations>
+				</Texture>
+				<Texture file="Interface\AddOns\AzerothAdventureAlbum\ART\Card\NotificationBling-mask" alphaMode="ADD" parentKey="Entrance">
+					<Size x="256" y="68.5"/>
+					<Anchors>
+						<Anchor point="CENTER" x="-2" y="0"/>
+					</Anchors>
+					<Animations>
+						<AnimationGroup parentKey="animIn">
+							<Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="1"/>
+							<Alpha fromAlpha="1" toAlpha="0" duration="0.5" order="2"/>
+							<Scripts>
+								<OnLoad>
+									self:Play();
+								</OnLoad>
+								<OnFinished>
+									self:GetParent():Hide();
+								</OnFinished>
+							</Scripts>
+						</AnimationGroup>
+					</Animations>
+				</Texture>
+			</Layer>
+
+			<Layer level="OVERLAY"  textureSubLevel="2">
+				<FontString parentKey="Title" inherits="CardHeader" text="Card Name" justifyV="BOTTOM">
+					<Size x="256" y="64.5"/>
+					<Color r="1" g=".82" b="0"/>
+					<Anchors>
+						<Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" x="-1" y="19"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="Notification" inherits="NotificationFont_Tiny" text= "CARD_NEW" justifyV="TOP">
+					<Size x="200" y="24"/>
+					<Color r="1" g="1" b="1" a="1"/>
+					<Anchors>
+						<Anchor point="TOP" relativeKey="$parent" relativePoint="TOP" x="-1" y="-20"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+
+		<Scripts>
+			<OnLoad>
+				self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnShow>
+				self.Bling:Show();
+				self.Bling.animIn:Play();
+				self.Entrance:Show();
+				self.Entrance.animIn:Play();
+				self.Background:SetAlpha(0);
+				self.Background.animIn:Play();
+			</OnShow>
+			<OnHide>
+				self.Bling.animIn:Stop();
+				self.Entrance.animIn:Stop();
+				self.Background.animIn:Stop();
+			</OnHide>
+			<OnClick function="CardAlertFrame_OnClick"/>
+		</Scripts>
+	</Button>
+</Ui>
